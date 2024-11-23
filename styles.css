@@ -8,44 +8,40 @@
 /* Body Styling */
 body {
   font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f8f9fa;
 }
 
-/* Container Styling */
-.container {
-  text-align: center;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  max-width: 600px;
-  width: 90%;
+/* Header Styling */
+header {
+  background-color: #007bff;
+  color: white;
+  padding: 50px 0;
 }
 
-/* Responsive Typography */
-h1, h2 {
-  font-weight: 600;
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
-h2 {
-  color: #6c757d;
+header p {
+  font-size: 1.2rem;
 }
 
-p {
-  font-size: 1rem;
-  line-height: 1.5;
+/* Picture Styling */
+picture img {
+  border: 5px solid #ddd;
+}
+
+/* Portfolio Cards */
+.card {
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
 
 /* Footer Styling */
 footer {
-  margin-top: 20px;
-  font-size: 0.9rem;
-  color: #6c757d;
+  background-color: #343a40;
+  color: #f8f9fa;
 }
