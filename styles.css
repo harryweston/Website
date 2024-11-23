@@ -1,0 +1,51 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Container Styling */
+.container {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  width: 90%;
+}
+
+/* Responsive Typography */
+h1, h2 {
+  font-weight: 600;
+}
+
+h2 {
+  color: #6c757d;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Footer Styling */
+footer {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
