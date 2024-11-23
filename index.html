@@ -4,84 +4,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Welcome to Harry Weston</title>
+
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQ84pHzSnOM4jacfwoyxEd+sGzn1D6L94EO5fnuOH6KhM5VhKn8lbgIYg" crossorigin="anonymous">
+
+  <!-- Custom CSS -->
   <style>
-        /* Default styles for all devices */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .container {
-            text-align: center;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
+    /* Body Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+    }
 
-        /* Styles for small devices (e.g., phones) */
-        @media (max-width: 600px) {
-            .container {
-                width: 90%;
-                font-size: 14px;
-            }
-        }
+    /* Container Styling */
+    .container {
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      width: 90%;
+    }
 
-        /* Styles for tablets */
-        @media (min-width: 601px) and (max-width: 1024px) {
-            .container {
-                width: 70%;
-                font-size: 16px;
-            }
-        }
+    /* Responsive Typography */
+    h1, h2 {
+      font-weight: 600;
+    }
 
-        /* Styles for desktop devices */
-        @media (min-width: 1025px) {
-            .container {
-                width: 50%;
-                font-size: 18px;
-            }
-        }
-    </style>
+    h2 {
+      color: #6c757d;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Footer Styling */
+    footer {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+  </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
-        <h1>Offline-First Website</h1>
+    <h1>Harry Weston</h1>
+    <h2 class="text-secondary">Offline-First Website</h2>
   </header>
-  
-   <main>
-         <h2 class="text-center">Harry Weston</h2>
-         <h3 class="text-center">WEBSITE</h3>
-        <p>---------</p>
-        <p>This is the main content that will be available offline.</p>
-        <p>Try disconnecting from the internet and refreshing the page!</p>
-        
-             
-    </main>
-    <footer>
-        <p>Footer content (may not be cached).</p>
-    </footer>
-    <script>
-        // Register the Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('service-worker.js')
-                .then(() => console.log('Service Worker registered successfully.'))
-                .catch(error => console.error('Service Worker registration failed:', error));
-        }
-    </script>
- 
-  
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
 
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+      <h3>Welcome to the Website</h3>
+      <p>This content will be available offline.</p>
+      <p>Try disconnecting from the internet and refreshing the page!</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Footer content (may not be cached).</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoBt1Ah7ZzF1ZZjsgtNxUAY1zD9yixkP1txHf3eD5ornroQ" crossorigin="anonymous"></script>
+
+  <!-- Register the Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker registered successfully.'))
+        .catch(error => console.error('Service Worker registration failed:', error));
+    }
+  </script>
+</body>
+</html>
