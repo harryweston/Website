@@ -1,107 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Harry Weston - Welcome</title>
+    <meta charset="UTF-8" content="text/html; charset=iso-8859-1" name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQ84pHzSnOM4jacfwoyxEd+sGzn1D6L94EO5fnuOH6KhM5VhKn8lbgIYg" crossorigin="anonymous">
+    <title>Location Map</title>
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="styles.css">
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    
+    <style>
+        /* Add custom styles here */
+    </style>
 </head>
-<body>
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-      <a class="navbar-brand" href="#">Harry Weston</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Header Section -->
-  <header class="text-center bg-primary text-white py-5">
-    <div class="container">
-      <h1>Welcome to Harry Weston</h1>
-      <p class="lead">A modern and responsive website built with best practices</p>
-    </div>
-  </header>
+<body class="body">
+    <div id="map" style="position: relative; height: 100vh; width: 50%; margin: auto;"></div>
 
-  <!-- Main Content -->
-  <main class="py-5">
-    <div class="container text-center" id="about">
-      <h2>About Me</h2>
-      <p class="mb-4">Hello! I'm Harry Weston, a passionate web developer focused on creating modern, responsive, and user-friendly websites.</p>
-
-      <!-- Picture Section -->
-      <picture>
-        <source srcset="Me.JPG" type="image/jpeg">
-        <img src="Me.JPG" alt="Picture of Harry Weston" class="img-fluid rounded-circle mb-4" style="max-width: 200px;">
-      </picture>
-    </div>
-
-    <!-- Portfolio Section -->
-    <div class="container my-5" id="portfolio">
-      <h2 class="text-center mb-4">Portfolio</h2>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card">
-            <img src="Me.JPG" class="card-img-top" alt="Project 1">
-            <div class="card-body">
-              <h5 class="card-title">Project 1</h5>
-              <p class="card-text">Description of project 1. Built with love and precision.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <img src="Me.JPG" class="card-img-top" alt="Project 2">
-            <div class="card-body">
-              <h5 class="card-title">Project 2</h5>
-              <p class="card-text">Description of project 2. A masterpiece in web development.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <img src="Me.JPG" class="card-img-top" alt="Project 3">
-            <div class="card-body">
-              <h5 class="card-title">Project 3</h5>
-              <p class="card-text">Description of project 3. A creative and responsive design.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-4" id="contact">
-    <p>Contact me: <a href="mailto:harry@example.com" class="text-white">harry@example.com</a></p>
-    <p>&copy; 2024 Harry Weston. All Rights Reserved.</p>
-  </footer>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoBt1Ah7ZzF1ZZjsgtNxUAY1zD9yixkP1txHf3eD5ornroQ" crossorigin="anonymous"></script>
-
-  <!-- Register the Service Worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('Service Worker registered successfully.'))
-        .catch(error => console.error('Service Worker registration failed:', error));
-    }
-  </script>
+    <script src="https://api.js"></script>
+    <script>
+        navigator.geolocation.getCurrentPosition(position => {
+            const lat = position.coords.lat;
+            const lon = position.coords.lon;
+            
+            const url = `https://maps.googleapis.com/maps/api/place/matrix/json?lat=${lat}&lon=${lon}&key=YOUR_API_KEY`;
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const centerLat = data.results.frozen[0].place_id.geometry.lat;
+                    const centerLon = data.results.frozen[0].place_id.geometry.lng;
+                    
+                    const mapDiv = document.getElementById("map");
+                    
+                    google.maps.Map({
+                        center: { lat: centerLat, lng: centerLon },
+                        zoom: 15,
+                            mapTypeControl: true,
+                                controlSize: 10,
+                                    mapToolbar: false
+                            },
+                        mapId: "map"
+                            )
+                    );
+                })
+                .catch(error => console.error(`Request failed`, error));
+            });
+    </script>
 </body>
+
 </html>
